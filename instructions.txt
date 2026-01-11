@@ -1,0 +1,97 @@
+# Comenzar un proyecto con vite + react
+npm create vite
+-> React
+-> TypeScript + SWC
+npm install
+npm run dev
+
+[Se va modificando lo que hay dentro de main.tsx]
+
+# UNIT TEST
+
+# Instalar vitest
+npm install -D vitest
+
+# Colocar en el package.json lo siguiente
+"test": "vitest",
+"test:ui": "vitest --ui",
+"coverage": "vitest run --coverage"
+
+# render a component
+import { render, screen } from '@testing-library/react';
+render(<MyAwesomeApp />);
+
+# Para ver el DOM de forma estructurada
+screen.debug();
+
+# Estructura de un test suite y test case
+describe('add', () => {
+    test('should add two positives numbers', () => {
+        // ! 1. Arrange
+        const a = 1;
+        const b = 2;
+
+        // ! 2. Act
+        const result = add(a, b);
+
+        // ! 3. Assert
+        expect(result).toBe(3);
+    });
+});
+
+# Testing Library
+Para hacer evaluaciones sobre components de React
+npm install --save-dev @testing-library/react @testing-library/dom @types/react @types/react-dom
+
+expect().toBe()
+expect().toMatchSnapshot() (evaluar snapshots)
+
+screen (se actualiza automaticamente)
+container (solo se actualizer al usar la function render)
+
+getTestId()
+
+Remove:
+1. assets/
+2. App.css
+3. App.tsx
+4. index.css
+5. Modifar main.tsx
+
+****NOTAS****
+Dentro de las llaves {} se colocan expresiones de JavaScript
+
+Los booleanos no se imprimen en React
+
+Si los valores como const no cambian dentro del componente, es major dejarlo afuera
+
+JSX usa camelCase
+
+'rafc' para crear rapidamente un componente
+
+Usar ? para hacer opcional la property
+
+Comentar codigo: Ctrl + K > Ctrl + C
+
+Los eventos empieza con "on"
+
+***USE STATE***
+const [count, setCount] = useState(quantity);
+
+Debe tener un evento que dispara la funcion setCount (para evitar infinitos renders) 
+
+const handleClick = () => {
+    setCount(count + 1);
+}
+
+setCount es la function que Vuelve a renderizar el componente
+
+****ESTILOS****
+El estilo se coloca de esta forma dentro del tag style={{backgroundColor: 'red'}}
+
+Si se extrae el estilo del element se puede usar el tipo de dato 'CSSProperties' para intelisense
+
+// 1. React
+// 2. Terceros
+// 3. Importaciones nuestras
+// 4. CSS
