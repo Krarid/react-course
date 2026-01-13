@@ -8,6 +8,7 @@ import { getGifsByQuery } from "./gifs/actions/get-gifs-by-query.action"
 
 export const GifsApp = () => {
     const [previousTerms, setPreviousTerms] = useState(['Pennywise', 'Jason', 'Freddy Kruger']);
+    const [gifs, setGifs] = useState(mockGifs);
 
     const handleTermClicked = (term: string): void => {
         console.log(term);
@@ -27,7 +28,7 @@ export const GifsApp = () => {
 
         setPreviousTerms([term, ...previousTerms].splice(0, 7));
 
-        console.log(await getGifsByQuery(term));
+        setGifs(await getGifsByQuery(term));
     }
 
     return (
@@ -42,6 +43,6 @@ export const GifsApp = () => {
             <PreviousSearches searches={previousTerms} onTermClicked={handleTermClicked} />
 
             {/* Gifs */}
-            <GifList gifs={mockGifs} />
+            <GifList gifs={gifs} />
         </>)
 }
