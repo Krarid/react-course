@@ -13,13 +13,18 @@ export const GifsApp = () => {
     }
 
     const handleSearch = (term: string): void => {
+        // Validar que el query no este vacio
         if (term.length === 0)
             return;
 
+        // Quitar espacios y convertir a minusculas
+        term = term.toLowerCase().trim();
+
+        // Evitar busquedas duplicadas
         if (previousTerms.includes(term))
             return;
 
-        setPreviousTerms([...previousTerms, term]);
+        setPreviousTerms([term, ...previousTerms].splice(0, 7));
     }
 
     return (
