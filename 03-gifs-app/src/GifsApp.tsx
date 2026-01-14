@@ -5,10 +5,11 @@ import { mockGifs } from "./mock-data/gifs.mock"
 import { CustomHeader } from "./shared/components/CustomHeader"
 import { SearchBar } from "./shared/components/SearchBar"
 import { getGifsByQuery } from "./gifs/actions/get-gifs-by-query.action"
+import type { Gif } from "./gifs/interfaces/gif.interface"
 
 export const GifsApp = () => {
-    const [previousTerms, setPreviousTerms] = useState(['Pennywise', 'Jason', 'Freddy Kruger']);
-    const [gifs, setGifs] = useState(mockGifs);
+    const [previousTerms, setPreviousTerms] = useState<string[]>(['Pennywise', 'Jason', 'Freddy Kruger']);
+    const [gifs, setGifs] = useState<Gif[]>(mockGifs);
 
     const handleTermClicked = (term: string): void => {
         console.log(term);
